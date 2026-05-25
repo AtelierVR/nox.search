@@ -1,5 +1,6 @@
 ﻿{
-  "name": "nox.search",
-  "displayName": "Nox - Search",
-  "version": "1.0.0"
+    "name":  "nox.search",
+    "displayName":  "Nox - Search",
+    "version":  "1.0.0",
+    "description":  "Search provider API for querying users, worlds, and servers across the Nox network."
 }
