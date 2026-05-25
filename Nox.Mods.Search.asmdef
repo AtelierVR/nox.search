@@ -1,0 +1,20 @@
+﻿{
+  "name": "Nox.Mods.Search",
+  "rootNamespace": "",
+  "references": [
+    "Nox.CCK",
+    "UniTask",
+    "Unity.TextMeshPro",
+    "Nox.Search",
+    "Nox.UI"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

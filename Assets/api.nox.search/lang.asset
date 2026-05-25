@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776389e82c640c44086d3baf10dd1c7b, type: 3}
+  m_Name: lang
+  m_EditorClassIdentifier: Nox.CCK::Nox.CCK.Language.LanguagePack
+  languages:
+  - IETF: fr-FR
+    entries:
+    - key: search.start_search
+      value: "D\xE9marrer une recherche pour voir des r\xE9sultats"
+    - key: search.title
+      value: Recherche
+    - key: search.info.title
+      value: Info
+    - key: search.query.placeholder
+      value: Rechercher...
+    - key: search.no_handler
+      value: "Aucun gestionnaire de recherche trouv\xE9"
+    - key: search.worker.canceled
+      value: "Annul\xE9e"
+    - key: search.worker.fetching
+      value: Recherche...
+    - key: search.worker.error
+      value: 'Erreur: {0}'
+    - key: search.worker.no_message
+      value: "Une erreur s'est produite, mais aucun message n'a \xE9t\xE9 fourni."
+    - key: search.worker.error.no_result
+      value: "Aucun r\xE9sultat trouv\xE9, mais avec une erreur."
+    - key: search.worker.empty
+      value: "Aucun r\xE9sultat trouv\xE9"
+    - key: search.worker.title
+      value: '{0}'
+  - IETF: en-US
+    entries:
+    - key: search.start_search
+      value: Start search to see results
+    - key: search.title
+      value: Search
+    - key: search.info.title
+      value: Info
+    - key: search.query.placeholder
+      value: Search...
+    - key: search.no_handler
+      value: No search handler found
+    - key: search.worker.canceled
+      value: Search canceled
+    - key: search.worker.fetching
+      value: Searching...
+    - key: search.worker.error
+      value: 'Error: {0}'
+    - key: search.worker.no_message
+      value: An error occurred, but no message was provided.
+    - key: search.worker.error.no_result
+      value: No results found, but with an error.
+    - key: search.worker.empty
+      value: No results found
+    - key: search.worker.title
+      value: '{0}'
