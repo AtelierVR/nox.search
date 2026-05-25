@@ -23,6 +23,19 @@
       "website": "https://hactazia.fr/"
     }
   ],
+  "relations": [
+    {
+      "id": "ui",
+      "type": "depends",
+      "version": ">=1.0.0"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "after",
+      "id": "ui"
+    }
+  ],
   "entrypoints": {
     "main": [
       "Nox.Search.Runtime.Main"
