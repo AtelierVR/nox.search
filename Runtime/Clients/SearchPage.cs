@@ -5,15 +5,13 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Nox.CCK.Language;
 using Nox.CCK.Utils;
-using Nox.Search;
 using Nox.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using Object = UnityEngine.Object;
 using Logger = Nox.CCK.Utils.Logger;
 
-namespace api.nox.search.client {
+namespace Nox.Search.Runtime.Clients {
 	public class SearchPage : IPage {
 		internal static string GetStaticKey()
 			=> "search";

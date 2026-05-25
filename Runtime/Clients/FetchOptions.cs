@@ -1,6 +1,6 @@
 using Nox.Search;
 
-namespace api.nox.search.client {
+namespace Nox.Search.Runtime.Clients {
 	public class FetchOptions : IFetchOptions {
 		public string Query { get; set; }
 		public uint Page { get; set; }

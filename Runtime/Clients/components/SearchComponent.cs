@@ -11,7 +11,7 @@ using UnityEngine.UI;
 using Logger = Nox.CCK.Utils.Logger;
 using Transform = UnityEngine.Transform;
 
-namespace api.nox.search.client {
+namespace Nox.Search.Runtime.Clients {
 	public class SearchComponent : MonoBehaviour {
 		public Button               submitButton;
 		public Image                imageButton;

@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using Nox.CCK.Utils;
 using Nox.Search;
 
-namespace api.nox.search.client {
+namespace Nox.Search.Runtime.Clients {
 	public class WorkerTask {
 		internal int Uid = Guid.NewGuid().GetHashCode();
 

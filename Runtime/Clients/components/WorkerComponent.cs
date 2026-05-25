@@ -7,7 +7,7 @@ using UnityEngine;
 using Logger = Nox.CCK.Utils.Logger;
 using Transform = UnityEngine.Transform;
 
-namespace api.nox.search.client {
+namespace Nox.Search.Runtime.Clients {
 	public class WorkerComponent : MonoBehaviour {
 		public TextLanguage title;
 		public TextLanguage message;

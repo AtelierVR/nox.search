@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Logger = Nox.CCK.Utils.Logger;
 
-namespace api.nox.search.client {
+namespace Nox.Search.Runtime.Clients {
 	public class HandlerComponent : MonoBehaviour {
 		public Image         icon;
 		public RectTransform iconContainer;

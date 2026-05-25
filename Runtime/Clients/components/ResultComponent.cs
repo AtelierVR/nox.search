@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Logger = Nox.CCK.Utils.Logger;
 
-namespace api.nox.search.client {
+namespace Nox.Search.Runtime.Clients {
 	public class ResultComponent : MonoBehaviour {
 		public   RawImage        icon;
 		public   TextLanguage    text;

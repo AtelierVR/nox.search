@@ -1,4 +1,4 @@
-namespace api.nox.search.client {
+namespace Nox.Search.Runtime.Clients {
 	internal enum WorkerTaskStatus {
 		Pending,
 		Fetching,

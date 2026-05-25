@@ -1,14 +1,14 @@
 using System;
-using api.nox.search.client;
 using Nox.CCK.Mods.Cores;
 using Nox.CCK.Mods.Events;
 using Nox.CCK.Mods.Initializers;
 using Nox.CCK.Utils;
+using Nox.Search.Runtime.Clients;
 using Nox.UI;
 
-namespace api.nox.search {
+namespace Nox.Search.Runtime {
 	public class Client : IClientModInitializer {
-		internal static IUiAPI UiAPI
+		static internal IUiAPI UiAPI
 			=> Main.Instance.CoreAPI.ModAPI
 				.GetMod("ui")
 				?.GetInstance<IUiAPI>();

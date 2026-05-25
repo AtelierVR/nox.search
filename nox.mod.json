@@ -1,41 +1,34 @@
 ﻿{
-    "type":  "mod",
-    "id":  "nox.search",
-    "provides":  [
-                     "fr.hactazia.search",
-                     "search"
-                 ],
-    "name":  "Search",
-    "version":  "1.0.0",
-    "description":  "Search provider API for querying users, worlds, and servers across the Nox network.",
-    "license":  "GPL-3.0",
-    "icon":  null,
-    "contact":  {
-                    "email":  "hactazia@gmail.com",
-                    "source":  "https://github.com/AtelierVR/nox.search",
-                    "website":  "https://nox.hactazia.fr/",
-                    "issues":  "https://github.com/AtelierVR/nox.search/issues"
-                },
-    "authors":  [
-                    {
-                        "name":  "Hactazia",
-                        "email":  "hactazia@gmail.com",
-                        "website":  "https://hactazia.fr/"
-                    }
-                ],
-    "contributors":  [
-
-                     ],
-    "relations":  [
-
-                  ],
-    "entrypoints":  {
-
-                    },
-    "references":  [
-
-                   ],
-    "permissions":  [
-
-                    ]
+  "type": "mod",
+  "id": "nox.search",
+  "provides": [
+    "fr.hactazia.search",
+    "search"
+  ],
+  "name": "Search",
+  "version": "1.0.0",
+  "description": "Search provider API for querying users, worlds, and servers across the Nox network.",
+  "license": "GPL-3.0",
+  "icon": null,
+  "contact": {
+    "email": "hactazia@gmail.com",
+    "source": "https://github.com/AtelierVR/nox.search",
+    "website": "https://nox.hactazia.fr/",
+    "issues": "https://github.com/AtelierVR/nox.search/issues"
+  },
+  "authors": [
+    {
+      "name": "Hactazia",
+      "email": "hactazia@gmail.com",
+      "website": "https://hactazia.fr/"
+    }
+  ],
+  "entrypoints": {
+    "main": [
+      "Nox.Search.Runtime.Main"
+    ],
+    "client": [
+      "Nox.Search.Runtime.Client"
+    ]
+  }
 }

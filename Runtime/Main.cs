@@ -1,13 +1,11 @@
 using System.Collections.Generic;
-using System.Linq;
 using Nox.CCK.Language;
 using Nox.CCK.Mods.Cores;
 using Nox.CCK.Mods.Initializers;
 using Nox.CCK.Utils;
-using Nox.Search;
 using UnityEngine.Events;
 
-namespace api.nox.search {
+namespace Nox.Search.Runtime {
 	public class Main : IMainModInitializer, ISearchAPI {
 		internal readonly List<IHandler> Handlers = new();
 		internal static   Main           Instance;
@@ -19,12 +17,12 @@ namespace api.nox.search {
 
 		private void InvokeHandlerAdded(IHandler handler) {
 			OnHandlerAdded.Invoke(handler);
-			CoreAPI.EventAPI.Emit("search_handler_added", handler);
+			CoreAPI?.EventAPI.Emit("search_handler_added", handler);
 		}
 
 		private void InvokeHandlerRemoved(IHandler handler) {
 			OnHandlerRemoved.Invoke(handler);
-			CoreAPI.EventAPI.Emit("search_handler_removed", handler);
+			CoreAPI?.EventAPI.Emit("search_handler_removed", handler);
 		}
 
 		public IHandler Add(IHandler handler) {
