@@ -25,8 +25,10 @@ namespace Nox.Search.Runtime.Clients {
 		private void OnDestroy()
 			=> Task = null;
 
-		private void Awake()
-			=> UpdateData(Task);
+		private void Awake() {
+			if (Task != null)
+				UpdateData(Task);
+		}
 
 
 		public void UpdateData(WorkerTask task) {
