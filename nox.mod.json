@@ -6,7 +6,7 @@
     "search"
   ],
   "name": "Search",
-  "version": "1.0.0",
+  "version": "1.0.x",
   "description": "Search provider API for querying users, worlds, and servers across the Nox network.",
   "license": "GPL-3.0",
   "icon": null,
