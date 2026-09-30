@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Nox.Search {
 	/// <summary>
@@ -14,9 +13,9 @@ namespace Nox.Search {
 		
 		/// <summary>
 		/// The image associated with the result item.
-		/// This could be a thumbnail or icon representing the item.
+		/// Can be either a remote url (downloaded lazily) or an already loaded texture.
 		/// </summary>
-		public UniTask<Texture2D> Image { get; }
+		public UniTask<ImageSource> Image { get; }
 
 		/// <summary>
 		/// The localization key for the title of the result item.

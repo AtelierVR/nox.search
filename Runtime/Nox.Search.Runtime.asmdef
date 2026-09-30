@@ -1,7 +1,22 @@
 ﻿{
     "name": "Nox.Search.Runtime",
     "rootNamespace": "",
-    "references": ["Nox.CCK","Nox.CCK.Search","UniTask","Unity.TextMeshPro","Nox.Search","Nox.UI"],
-    "includePlatforms": [],"excludePlatforms": [],"allowUnsafeCode": false,"overrideReferences": false,
-    "precompiledReferences": [],"autoReferenced": true,"defineConstraints": [],"versionDefines": [],"noEngineReferences": false
+    "references": [
+        "Nox.CCK",
+        "Nox.CCK.Network",
+        "Nox.CCK.Search",
+        "UniTask",
+        "Unity.TextMeshPro",
+        "Nox.Search",
+        "Nox.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

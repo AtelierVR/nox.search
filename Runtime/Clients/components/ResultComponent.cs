@@ -1,6 +1,8 @@
 using System;
 using Cysharp.Threading.Tasks;
 using Nox.CCK.Language;
+using Nox.CCK.Network;
+using Nox.CCK.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 using Logger = Nox.CCK.Utils.Logger;
@@ -41,30 +43,43 @@ namespace Nox.Search.Runtime.Clients {
 			}
 
 			text.UpdateText(Data.TitleKey, Data.TitleArguments ?? Array.Empty<string>());
-			UpdateImage(Data).Forget();
+			UpdateImage(Data);
 		}
+
+		private void UpdateImage(IResultData data)
+			=> UpdateImageAsync(data).Forget();
 
 		private bool _imageLoading;
 
-		private async UniTask UpdateImage(IResultData data) {
+		private async UniTask UpdateImageAsync(IResultData data) {
 			if (_imageLoading) return;
 			_imageLoading = true;
 
 			try {
-				var texture = await data.Image;
-				if (texture) {
-					icon.texture = texture;
+				var image = await data.Image;
+
+				// A remote url is handled by NetworkImage (size aware request + caching).
+				if (image.HasUrl) {
+					var networkImage = icon.GetOrAddComponent<NetworkImage>();
+					networkImage.Url = image.Url;
 					icon.gameObject.SetActive(true);
-				} else {
-					icon.gameObject.SetActive(false);
-					icon.texture = null;
+					return;
 				}
+
+				if (image.HasTexture) {
+					icon.texture = image.Texture;
+					icon.gameObject.SetActive(true);
+					return;
+				}
+
+				icon.gameObject.SetActive(false);
+				icon.texture = null;
 			} catch {
 				icon.gameObject.SetActive(false);
 				icon.texture = null;
+			} finally {
+				_imageLoading = false;
 			}
-
-			_imageLoading = false;
 		}
 	}
 }

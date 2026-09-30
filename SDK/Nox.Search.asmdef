@@ -2,6 +2,7 @@
   "name": "Nox.Search",
   "rootNamespace": "",
   "references": [
+    "Nox.CCK",
     "UniTask"
   ],
   "includePlatforms": [],
