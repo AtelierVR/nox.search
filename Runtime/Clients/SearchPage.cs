@@ -228,7 +228,7 @@ namespace Nox.Search.Runtime.Clients {
 			_tasks.Clear();
 		}
 
-		async internal UniTask Submit() {
+		async internal UniTask Submit(bool force = false) {
 			if (IsFetching)
 				return;
 
@@ -251,8 +251,9 @@ namespace Nox.Search.Runtime.Clients {
 
 			// Same handler and same search (query + pagination) already fetched:
 			// reuse the cached results instead of running the workers again.
+			// A forced submit (refresh / search button) bypasses the cache.
 			var options = BuildOptions(query);
-			var cached  = GetCache(handler, options);
+			var cached  = force ? null : GetCache(handler, options);
 			if (cached != null) {
 				Cancel();
 				_tasks.Clear();

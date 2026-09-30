@@ -43,7 +43,7 @@ namespace Nox.Search.Runtime.Clients {
 			Page.OnWorkerTaskStart.AddListener(OnWorkerTaskStart);
 			Page.OnHandlerUpdate.AddListener(UpdateHandler);
 			resultText.UpdateText("search.start_search");
-			resultContainer.gameObject.SetActive(true);
+			resultContainer.SetActive(true);
 			workersContainer.SetActive(false);
 			inputField.onSubmit.AddListener(OnSubmit);
 			inputField.onValueChanged.AddListener(OnQueryChanged);
@@ -68,7 +68,7 @@ namespace Nox.Search.Runtime.Clients {
 		private void OnButtonClick() {
 			if (Page.IsFetching) {
 				OnCancel();
-			} else OnSubmit();
+			} else OnSubmit(true);
 
 			UpdateSearchButtons();
 		}
@@ -119,7 +119,7 @@ namespace Nox.Search.Runtime.Clients {
 
 		private void OnSubmit(string query) {
 			OnQueryChanged(query);
-			OnSubmit();
+			OnSubmit(true);
 			UpdateSearchButtons();
 		}
 
@@ -146,6 +146,10 @@ namespace Nox.Search.Runtime.Clients {
 
 		private void OnSubmit()
 			=> Page?.Submit().Forget();
+
+		// Explicit user action (button / enter): bypass the cache and fetch again.
+		private void OnSubmit(bool force)
+			=> Page?.Submit(force).Forget();
 
 		private void OnCancel()
 			=> Page?.Cancel();
