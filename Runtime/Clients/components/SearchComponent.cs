@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Nox.CCK.Language;
 using Nox.CCK.Utils;
-using Nox.Search;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Logger = Nox.CCK.Utils.Logger;
 using Transform = UnityEngine.Transform;
@@ -53,6 +50,10 @@ namespace Nox.Search.Runtime.Clients {
 			submitButton.onClick.AddListener(OnButtonClick);
 			UpdateSearchButtons();
 			UpdateData();
+			if (Page.AutoSubmit) {
+				Page.AutoSubmit = false;
+				OnSubmit();
+			}
 		}
 
 		private void OnButtonClick() {
@@ -227,6 +228,8 @@ namespace Nox.Search.Runtime.Clients {
 			if (Page.Handler == handler) return;
 			Page.Handler = handler;
 			UpdateData();
+			Page.Cancel();
+			OnSubmit();
 		}
 	}
 }

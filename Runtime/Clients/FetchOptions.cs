@@ -1,5 +1,3 @@
-using Nox.Search;
-
 namespace Nox.Search.Runtime.Clients {
 	public class FetchOptions : IFetchOptions {
 		public string Query { get; set; }

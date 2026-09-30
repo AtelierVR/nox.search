@@ -1,9 +1,6 @@
 using System;
-using System.Linq;
 using Cysharp.Threading.Tasks;
 using Nox.CCK.Language;
-using Nox.CCK.Utils;
-using Nox.Search;
 using UnityEngine;
 using UnityEngine.UI;
 using Logger = Nox.CCK.Utils.Logger;

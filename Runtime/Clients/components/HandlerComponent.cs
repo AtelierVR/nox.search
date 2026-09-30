@@ -1,6 +1,5 @@
 using System;
 using Nox.CCK.Language;
-using Nox.Search;
 using UnityEngine;
 using UnityEngine.UI;
 using Logger = Nox.CCK.Utils.Logger;

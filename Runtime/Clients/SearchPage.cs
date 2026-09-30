@@ -44,12 +44,11 @@ namespace Nox.Search.Runtime.Clients {
 				? Config.Load().Get<string>("search.last_handler")
 				: h;
 			var query = T(context, 1, out string q) ? q : null;
-			var auto  = T(context, 2, out bool a) && a;
-			HandlerId = handler;
-			Query     = query ?? string.Empty;
-			LastQuery = (query ?? string.Empty) + " ";
-			if (auto)
-				Submit().Forget();
+			var auto  = !T(context, 2, out bool a) || a;
+			HandlerId  = handler;
+			Query      = query ?? string.Empty;
+			LastQuery  = (query ?? string.Empty) + " ";
+			AutoSubmit = auto;
 		}
 
 		public object[] GetContext()
@@ -71,6 +70,7 @@ namespace Nox.Search.Runtime.Clients {
 		private string _handlerId;
 		internal string Query;
 		internal string LastQuery;
+		internal bool   AutoSubmit;
 		internal readonly UnityEvent<WorkerTask> OnWorkerTaskUpdate = new();
 		internal readonly UnityEvent<WorkerTask[]> OnWorkerTaskStart = new();
 		internal readonly UnityEvent<IHandler[]> OnHandlerUpdate = new();

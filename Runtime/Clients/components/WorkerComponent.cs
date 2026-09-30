@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Nox.CCK.Language;
 using Nox.CCK.Utils;
-using Nox.Search;
 using UnityEngine;
 using Logger = Nox.CCK.Utils.Logger;
 using Transform = UnityEngine.Transform;
