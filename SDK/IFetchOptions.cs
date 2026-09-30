@@ -1,8 +1,10 @@
+using System;
+
 namespace Nox.Search {
 	/// <summary>
 	/// Interface representing options for fetching search results.
 	/// </summary>
-	public interface IFetchOptions {
+	public interface IFetchOptions : IComparable<IFetchOptions> {
 		/// <summary>
 		/// The search query string.
 		/// This can include keywords, phrases, or specific terms to filter the search results.

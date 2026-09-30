@@ -50,10 +50,19 @@ namespace Nox.Search.Runtime.Clients {
 			submitButton.onClick.AddListener(OnButtonClick);
 			UpdateSearchButtons();
 			UpdateData();
-			if (Page.AutoSubmit) {
-				Page.AutoSubmit = false;
+			if (Page.AutoSubmit)
 				OnSubmit();
-			}
+		}
+
+		private void ClearResults() {
+			Page.Cancel();
+			foreach (Transform tf in workerListContainer)
+				Destroy(tf.gameObject);
+			resultText.UpdateText("search.start_search");
+			resultContainer.SetActive(true);
+			workersContainer.SetActive(false);
+			UpdateLayout.UpdateImmediate(workersContainer);
+			UpdateSearchButtons();
 		}
 
 		private void OnButtonClick() {
@@ -228,8 +237,12 @@ namespace Nox.Search.Runtime.Clients {
 			if (Page.Handler == handler) return;
 			Page.Handler = handler;
 			UpdateData();
-			Page.Cancel();
-			OnSubmit();
+			if (Page.AutoSubmit) {
+				Page.Cancel();
+				OnSubmit();
+			} else if (!Page.RestoreCache())
+				ClearResults();
+			UpdateSearchButtons();
 		}
 	}
 }

@@ -101,6 +101,59 @@ namespace Nox.Search.Runtime.Clients {
 
 		private readonly List<WorkerTask> _tasks = new();
 
+		private readonly List<CacheEntry> _cache = new();
+
+		private sealed class CacheEntry {
+			internal string        HandlerId;
+			internal IFetchOptions Options;
+			internal WorkerTask[]  Tasks;
+		}
+
+		private FetchOptions BuildOptions(string query)
+			=> new() { Query = query, MenuId = _mId };
+
+		private CacheEntry GetCache(IHandler handler, IFetchOptions options) {
+			if (handler == null || options == null)
+				return null;
+			var handlerId = handler.GetId();
+			return _cache.Find(
+				e => e.HandlerId == handlerId
+					&& SearchOptionsComparer.Compare(e.Options, options) == 0
+			);
+		}
+
+		private void SetCache(IHandler handler, IFetchOptions options, WorkerTask[] tasks) {
+			if (handler == null || options == null)
+				return;
+			var handlerId = handler.GetId();
+			// Keep only the last search for each handler.
+			_cache.RemoveAll(e => e.HandlerId == handlerId);
+			_cache.Add(
+				new CacheEntry {
+					HandlerId = handlerId,
+					Options   = options,
+					Tasks     = tasks,
+				}
+			);
+		}
+
+		/// <summary>
+		/// Restores the last cached results for the current handler and query, if any.
+		/// Returns true when cached results were restored (no worker was fetched).
+		/// </summary>
+		internal bool RestoreCache() {
+			var handler = Handler;
+			var cached  = GetCache(handler, BuildOptions(Query));
+			if (cached == null)
+				return false;
+			Cancel();
+			_tasks.Clear();
+			_tasks.AddRange(cached.Tasks);
+			LastQuery = Query;
+			OnWorkerTaskStart.Invoke(_tasks.ToArray());
+			return true;
+		}
+
 		public GameObject GetContent(RectTransform parent) {
 			if (_content)
 				return _content;
@@ -178,7 +231,9 @@ namespace Nox.Search.Runtime.Clients {
 		async internal UniTask Submit() {
 			if (IsFetching)
 				return;
-			LastQuery = Query;
+
+			var query = Query;
+			LastQuery = query;
 
 			var handler = Handler;
 			if (handler == null) {
@@ -194,20 +249,37 @@ namespace Nox.Search.Runtime.Clients {
 				return;
 			}
 
+			// Same handler and same search (query + pagination) already fetched:
+			// reuse the cached results instead of running the workers again.
+			var options = BuildOptions(query);
+			var cached  = GetCache(handler, options);
+			if (cached != null) {
+				Cancel();
+				_tasks.Clear();
+				_tasks.AddRange(cached.Tasks);
+				OnWorkerTaskStart.Invoke(_tasks.ToArray());
+				return;
+			}
+
 			Cancel();
 
 			foreach (var worker in workers.Where(w => w != null))
 				_tasks.Add(
 					new WorkerTask {
 						Worker            = worker,
-						Data              = new FetchOptions { Query = Query, MenuId = _mId },
+						Data              = BuildOptions(query),
 						CancellationToken = new CancellationTokenSource(),
 						Timeout           = 10d,
 					}
 				);
 
-			OnWorkerTaskStart.Invoke(_tasks.ToArray());
-			await UniTask.WhenAll(_tasks.Select(t => t.Execute(this)));
+			var batch = _tasks.ToArray();
+			OnWorkerTaskStart.Invoke(batch);
+			await UniTask.WhenAll(batch.Select(t => t.Execute(this)));
+
+			// Do not cache a batch that was canceled (page left, handler switched...).
+			if (batch.Length > 0 && batch.All(t => t.Status != WorkerTaskStatus.Canceled))
+				SetCache(handler, options, batch);
 		}
 	}
 }

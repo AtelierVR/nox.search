@@ -5,5 +5,8 @@ namespace Nox.Search.Runtime.Clients {
 		public uint Limit { get; set; }
 
 		public int MenuId = 0;
+
+		public int CompareTo(IFetchOptions other)
+			=> SearchOptionsComparer.Compare(this, other);
 	}
 }
