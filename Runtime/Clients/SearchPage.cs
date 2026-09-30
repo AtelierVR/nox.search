@@ -228,6 +228,9 @@ namespace Nox.Search.Runtime.Clients {
 			_tasks.Clear();
 		}
 
+		public void OnRefresh() 
+			=> Submit(true).Forget();
+
 		async internal UniTask Submit(bool force = false) {
 			if (IsFetching)
 				return;
