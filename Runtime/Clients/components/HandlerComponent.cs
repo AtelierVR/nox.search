@@ -1,5 +1,6 @@
 using System;
 using Nox.CCK.Language;
+using Nox.CCK.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 using Logger = Nox.CCK.Utils.Logger;
@@ -35,7 +36,7 @@ namespace Nox.Search.Runtime.Clients {
 				icon.sprite = null;
 				iconContainer.gameObject.SetActive(false);
 			} else {
-				icon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+				icon.sprite = SpriteConvertor.Convert(texture);
 				iconContainer.gameObject.SetActive(true);
 			}
 

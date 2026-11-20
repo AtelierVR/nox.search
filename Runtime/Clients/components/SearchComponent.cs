@@ -137,11 +137,7 @@ namespace Nox.Search.Runtime.Clients {
 						: "ui:icons/refresh.png"
 			);
 			if (!texture) return;
-			imageButton.sprite = Sprite.Create(
-				texture,
-				new Rect(0, 0, texture.width, texture.height),
-				new Vector2(0.5f, 0.5f)
-			);
+			imageButton.sprite = SpriteConvertor.Convert(texture);
 		}
 
 		private void OnSubmit()
@@ -168,11 +164,7 @@ namespace Nox.Search.Runtime.Clients {
 				);
 			var icon = handler.GetIcon();
 			if (icon) {
-				inputImage.sprite = Sprite.Create(
-					icon,
-					new Rect(0, 0, icon.width, icon.height),
-					new Vector2(0.5f, 0.5f)
-				);
+				inputImage.sprite = SpriteConvertor.Convert(icon);
 				inputImageContainer.SetActive(true);
 			} else inputImageContainer.SetActive(false);
 
